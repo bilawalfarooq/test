@@ -5,6 +5,7 @@ const courseSchema = new mongoose.Schema({
   description: String,
   teacher: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  materials: [{ type: String }], // URLs or file references
   createdAt: { type: Date, default: Date.now }
 });
 
