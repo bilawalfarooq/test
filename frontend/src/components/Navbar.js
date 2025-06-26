@@ -1,4 +1,5 @@
 import React from 'react';
+import './Navbar.css';
 
 function Navbar({ user, onLogout, onNav }) {
   if (!user) return null;
@@ -38,11 +39,11 @@ function Navbar({ user, onLogout, onNav }) {
     ];
   }
   return (
-    <nav style={{ display: 'flex', gap: 16, marginBottom: 20 }}>
+    <nav className="navbar">
       {links.map(link => (
         <button key={link.key} onClick={() => onNav(link.key)}>{link.label}</button>
       ))}
-      <button style={{ marginLeft: 'auto' }} onClick={onLogout}>Logout</button>
+      <button className="logout-button" onClick={onLogout}>Logout</button>
     </nav>
   );
 }

@@ -49,7 +49,7 @@ function Attendance({ user, token }) {
   return (
     <div>
       <h2>Attendance</h2>
-      {message && <div style={{ color: 'green' }}>{message}</div>}
+      {message && <div className={`message ${message.includes('Error') ? 'error' : 'success'}`}>{message}</div>}
       <div>
         <label>Course: </label>
         <select value={selectedCourse} onChange={e => setSelectedCourse(e.target.value)}>
@@ -58,9 +58,9 @@ function Attendance({ user, token }) {
         </select>
       </div>
       {(user.role === 'admin' || user.role === 'teacher') && selectedCourse && (
-        <form onSubmit={handleMark} style={{ marginTop: 10 }}>
+        <form onSubmit={handleMark}>
           <label>Date: <input type="date" value={date} onChange={e => setDate(e.target.value)} required /></label>
-          <table border="1" cellPadding="6" style={{ marginTop: 10 }}>
+          <table>
             <thead>
               <tr><th>Student</th><th>Present</th></tr>
             </thead>

@@ -22,7 +22,10 @@ function Courses({ user, token }) {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
-        .then(data => setTeachers(data.filter(u => u.role === 'teacher')));
+        .then(data => {
+          if (Array.isArray(data)) setTeachers(data.filter(u => u.role === 'teacher'));
+          else setTeachers([]);
+        });
     }
   }, [user, token]);
 
@@ -58,8 +61,8 @@ function Courses({ user, token }) {
   return (
     <div>
       <h2>Courses</h2>
-      {message && <div style={{ color: 'green' }}>{message}</div>}
-      <table border="1" cellPadding="6" style={{ marginBottom: 20 }}>
+      {message && <div className={`message ${message.includes('Error') ? 'error' : 'success'}`}>{message}</div>}
+      <table>
         <thead>
           <tr>
             <th>Title</th><th>Description</th><th>Teacher</th><th>Actions</th>

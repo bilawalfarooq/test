@@ -1,5 +1,17 @@
 import React from 'react';
 import AdminUsers from './AdminUsers';
+import Courses from './Courses';
+import Assignments from './Assignments';
+import Grades from './Grades';
+import Attendance from './Attendance';
+import Forum from './Forum';
+import Notifications from './Notifications';
+import Badges from './Badges';
+import Reports from './Reports';
+import Progress from './Progress';
+import SystemUsage from './SystemUsage';
+import Settings from './Settings';
+import ContactTeacher from './ContactTeacher';
 
 function Dashboard({ user, nav }) {
   if (!user) return null;
@@ -19,30 +31,32 @@ function Dashboard({ user, nav }) {
 
 function AdminDashboard({ user, nav }) {
   let content = null;
-  if (nav === 'users') content = <AdminUsers token={localStorage.getItem('token')} />;
-  else if (nav === 'courses') content = <div>Course Creation (coming soon)</div>;
-  else if (nav === 'reports') content = <div>Reports (coming soon)</div>;
-  else if (nav === 'usage') content = <div>System Usage (coming soon)</div>;
-  else if (nav === 'settings') content = <div>Settings (coming soon)</div>;
+  const token = localStorage.getItem('token');
+  if (nav === 'users') content = <AdminUsers token={token} />;
+  else if (nav === 'courses') content = <Courses user={user} token={token} />;
+  else if (nav === 'reports') content = <Reports user={user} token={token} />;
+  else if (nav === 'usage') content = <SystemUsage user={user} token={token} />;
+  else if (nav === 'settings') content = <Settings user={user} token={token} />;
   else content = <div>Select an option from the navbar.</div>;
   return (
     <div>
       <h2>Admin Dashboard</h2>
       <p>Welcome, {user.name}!</p>
       {content}
-
     </div>
   );
 }
 
 function TeacherDashboard({ user, nav }) {
   let content = null;
-  if (nav === 'courses') content = <div>My Courses (coming soon)</div>;
+  const token = localStorage.getItem('token');
+  if (nav === 'courses') content = <Courses user={user} token={token} />;
+  else if (nav === 'grading') content = <><Attendance user={user} token={token} /><Grades user={user} token={token} /></>;
+  else if (nav === 'assignments') content = <Assignments user={user} token={token} />;
   else if (nav === 'upload') content = <div>Upload Content (coming soon)</div>;
-  else if (nav === 'grading') content = <div>Attendance & Grading (coming soon)</div>;
-  else if (nav === 'forum') content = <div>Q&A Forum (coming soon)</div>;
+  else if (nav === 'forum') content = <Forum user={user} token={token} />;
   else if (nav === 'live') content = <div>Live Classes (coming soon)</div>;
-  else if (nav === 'reports') content = <div>Reports (coming soon)</div>;
+  else if (nav === 'reports') content = <Reports user={user} token={token} />;
   else content = <div>Select an option from the navbar.</div>;
   return (
     <div>
@@ -55,12 +69,14 @@ function TeacherDashboard({ user, nav }) {
 
 function StudentDashboard({ user, nav }) {
   let content = null;
-  if (nav === 'courses') content = <div>Enrolled Courses (coming soon)</div>;
-  else if (nav === 'assignments') content = <div>Assignments (coming soon)</div>;
-  else if (nav === 'grades') content = <div>Grades (coming soon)</div>;
-  else if (nav === 'forum') content = <div>Q&A Forum (coming soon)</div>;
-  else if (nav === 'certificates') content = <div>Certificates (coming soon)</div>;
-  else if (nav === 'progress') content = <div>Progress Tracker (coming soon)</div>;
+  const token = localStorage.getItem('token');
+  if (nav === 'courses') content = <Courses user={user} token={token} />;
+  else if (nav === 'assignments') content = <Assignments user={user} token={token} />;
+  else if (nav === 'grades') content = <Grades user={user} token={token} />;
+  else if (nav === 'forum') content = <Forum user={user} token={token} />;
+  else if (nav === 'notifications') content = <Notifications user={user} token={token} />;
+  else if (nav === 'certificates' || nav === 'badges') content = <Badges user={user} token={token} />;
+  else if (nav === 'progress') content = <Progress user={user} token={token} />;
   else content = <div>Select an option from the navbar.</div>;
   return (
     <div>
@@ -73,10 +89,11 @@ function StudentDashboard({ user, nav }) {
 
 function ParentDashboard({ user, nav }) {
   let content = null;
-  if (nav === 'progress') content = <div>Student Progress (coming soon)</div>;
-  else if (nav === 'grades') content = <div>Grades (coming soon)</div>;
-  else if (nav === 'notifications') content = <div>Notifications (coming soon)</div>;
-  else if (nav === 'contact') content = <div>Contact Teacher (coming soon)</div>;
+  const token = localStorage.getItem('token');
+  if (nav === 'progress') content = <Progress user={user} token={token} />;
+  else if (nav === 'grades') content = <Grades user={user} token={token} />;
+  else if (nav === 'notifications') content = <Notifications user={user} token={token} />;
+  else if (nav === 'contact') content = <ContactTeacher user={user} token={token} />;
   else content = <div>Select an option from the navbar.</div>;
   return (
     <div>

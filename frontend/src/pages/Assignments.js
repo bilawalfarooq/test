@@ -58,7 +58,7 @@ function Assignments({ user, token }) {
   return (
     <div>
       <h2>Assignments</h2>
-      {message && <div style={{ color: 'green' }}>{message}</div>}
+      {message && <div className={`message ${message.includes('Error') ? 'error' : 'success'}`}>{message}</div>}
       <div>
         <label>Filter by Course: </label>
         <select name="course" value={form.course} onChange={handleChange}>
@@ -66,7 +66,7 @@ function Assignments({ user, token }) {
           {courses.map(c => <option key={c._id} value={c._id}>{c.title}</option>)}
         </select>
       </div>
-      <table border="1" cellPadding="6" style={{ marginBottom: 20, marginTop: 10 }}>
+      <table>
         <thead>
           <tr>
             <th>Title</th><th>Description</th><th>Due Date</th><th>Actions</th>

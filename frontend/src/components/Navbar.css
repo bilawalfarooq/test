@@ -1,0 +1,26 @@
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #34495e;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.navbar button {
+  background-color: #3498db;
+}
+
+.navbar button:hover {
+  background-color: #2980b9;
+}
+
+.logout-button {
+  margin-left: auto;
+  background-color: #e74c3c !important; /* Important to override general button styles */
+}
+
+.logout-button:hover {
+  background-color: #c0392b !important;
+} 

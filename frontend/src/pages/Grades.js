@@ -55,7 +55,7 @@ function Grades({ user, token }) {
   return (
     <div>
       <h2>Grades</h2>
-      {message && <div style={{ color: 'green' }}>{message}</div>}
+      {message && <div className={`message ${message.includes('Error') ? 'error' : 'success'}`}>{message}</div>}
       <div>
         <label>Course: </label>
         <select value={selectedCourse} onChange={e => setSelectedCourse(e.target.value)}>
@@ -63,7 +63,7 @@ function Grades({ user, token }) {
           {courses.map(c => <option key={c._id} value={c._id}>{c.title}</option>)}
         </select>
       </div>
-      <table border="1" cellPadding="6" style={{ marginBottom: 20, marginTop: 10 }}>
+      <table>
         <thead>
           <tr>
             <th>Student</th><th>Grade</th><th>Feedback</th>

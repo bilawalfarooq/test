@@ -44,7 +44,7 @@ router.delete('/:id', auth, async (req, res) => {
 router.post('/:id/enroll', auth, async (req, res) => {
   const course = await Course.findById(req.params.id);
   if (!course) return res.status(404).json({ message: 'Course not found' });
-  const studentId = req.body.studentId || req.user.userId;
+  const studentId = req.body.studentId || req.user._id;
   if (!studentId) return res.status(400).json({ message: 'Student ID required' });
   if (!course.students.includes(studentId)) {
     course.students.push(studentId);

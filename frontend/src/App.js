@@ -1,14 +1,13 @@
-
 import React, { useState } from 'react';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Navbar from './components/Navbar';
+import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
   const [showRegister, setShowRegister] = useState(false);
-
   const [nav, setNav] = useState(null);
   if (!user) {
     return (
@@ -22,7 +21,7 @@ function App() {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: 'auto', padding: 20 }}>
+    <div>
       <Navbar user={user} onLogout={() => { setUser(null); localStorage.removeItem('token'); }} onNav={setNav} />
       <Dashboard user={user} nav={nav} />
     </div>
