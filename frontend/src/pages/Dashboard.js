@@ -1,4 +1,5 @@
 import React from 'react';
+import AdminUsers from './AdminUsers';
 
 function Dashboard({ user, nav }) {
   if (!user) return null;
@@ -18,7 +19,7 @@ function Dashboard({ user, nav }) {
 
 function AdminDashboard({ user, nav }) {
   let content = null;
-  if (nav === 'users') content = <div>User Management (coming soon)</div>;
+  if (nav === 'users') content = <AdminUsers token={localStorage.getItem('token')} />;
   else if (nav === 'courses') content = <div>Course Creation (coming soon)</div>;
   else if (nav === 'reports') content = <div>Reports (coming soon)</div>;
   else if (nav === 'usage') content = <div>System Usage (coming soon)</div>;
@@ -29,6 +30,7 @@ function AdminDashboard({ user, nav }) {
       <h2>Admin Dashboard</h2>
       <p>Welcome, {user.name}!</p>
       {content}
+
     </div>
   );
 }
