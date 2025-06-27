@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import ForgotPasswordModal from '../components/ForgotPasswordModal';
+import ResetPasswordModal from '../components/ResetPasswordModal';
+import VerifyEmailModal from '../components/VerifyEmailModal';
+
 
 function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'student' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [showForgot, setShowForgot] = useState(false);
+  const [showReset, setShowReset] = useState(false);
+  const [showVerify, setShowVerify] = useState(false);
 
   const handleChange = e => {
+    // Prevent role from being changed
+    if (e.target.name === 'role') return;
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -34,16 +43,19 @@ function Register() {
         <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
         <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required />
         <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
-        <select name="role" value={form.role} onChange={handleChange}>
-          <option value="student">Student</option>
-          <option value="teacher">Teacher</option>
-          <option value="admin">Admin</option>
-          <option value="parent">Parent</option>
-        </select>
-        <button type="submit">Register</button>
+        {/* Role selection removed: only students can register */}
+        <button type="submit">Register as Student</button>
         {error && <div style={{ color: 'red' }}>{error}</div>}
         {success && <div style={{ color: 'green' }}>{success}</div>}
       </form>
+      <div style={{ marginTop: 10 }}>
+        <button type="button" onClick={() => setShowForgot(true)} style={{ marginRight: 8 }}>Forgot Password?</button>
+        <button type="button" onClick={() => setShowReset(true)} style={{ marginRight: 8 }}>Reset Password</button>
+        <button type="button" onClick={() => setShowVerify(true)}>Verify Email</button>
+      </div>
+      <ForgotPasswordModal open={showForgot} onClose={() => setShowForgot(false)} />
+      <ResetPasswordModal open={showReset} onClose={() => setShowReset(false)} />
+      <VerifyEmailModal open={showVerify} onClose={() => setShowVerify(false)} />
     </div>
   );
 }

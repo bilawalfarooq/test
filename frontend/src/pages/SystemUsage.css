@@ -1,0 +1,77 @@
+/* SystemUsage Page Polished Styles */
+.system-usage-container {
+  background: #f9fbfd;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.08);
+  padding: 32px 28px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.system-usage-title {
+  color: #2980b9;
+  font-size: 2rem;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.system-usage-summary {
+  background: #eaf6fb;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+}
+
+.system-usage-summary h4 {
+  margin-top: 0;
+  color: #2471a3;
+}
+
+.system-usage-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.system-usage-summary li {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.system-usage-table-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.04);
+  padding: 18px 12px;
+}
+
+.system-usage-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.system-usage-table th, .system-usage-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.system-usage-table th {
+  background: #f0f6fa;
+  color: #2471a3;
+  font-weight: 600;
+}
+
+.system-usage-table tr:hover {
+  background: #f6fbff;
+}
+
+.system-usage-message {
+  color: #c0392b;
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  text-align: center;
+}

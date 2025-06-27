@@ -3,17 +3,27 @@ import './Navbar.css';
 
 function Navbar({ user, onLogout, onNav }) {
   if (!user) return null;
-  let links = [];
+  let links = [
+    { label: 'Profile', key: 'profile' }
+  ];
   if (user.role === 'admin') {
     links = [
+      { label: 'Profile', key: 'profile' },
       { label: 'User Management', key: 'users' },
+      { label: 'Student List', key: 'students' },
+      { label: 'Add Student', key: 'admit' },
       { label: 'Course Creation', key: 'courses' },
+      { label: 'Staff/Teachers', key: 'staff' },
+      { label: 'Add Staff', key: 'addstaff' },
+      { label: 'Leave Requests', key: 'leaverequests' },
       { label: 'Reports', key: 'reports' },
       { label: 'System Usage', key: 'usage' },
-      { label: 'Settings', key: 'settings' }
+      { label: 'Settings', key: 'settings' },
+      { label: 'Class/Section Mgmt', key: 'classsections' }
     ];
   } else if (user.role === 'teacher') {
     links = [
+      { label: 'Profile', key: 'profile' },
       { label: 'My Courses', key: 'courses' },
       { label: 'Upload Content', key: 'upload' },
       { label: 'Attendance & Grading', key: 'grading' },
@@ -23,6 +33,7 @@ function Navbar({ user, onLogout, onNav }) {
     ];
   } else if (user.role === 'student') {
     links = [
+      { label: 'Profile', key: 'profile' },
       { label: 'Enrolled Courses', key: 'courses' },
       { label: 'Assignments', key: 'assignments' },
       { label: 'Grades', key: 'grades' },
@@ -32,6 +43,7 @@ function Navbar({ user, onLogout, onNav }) {
     ];
   } else if (user.role === 'parent') {
     links = [
+      { label: 'Profile', key: 'profile' },
       { label: 'Student Progress', key: 'progress' },
       { label: 'Grades', key: 'grades' },
       { label: 'Notifications', key: 'notifications' },

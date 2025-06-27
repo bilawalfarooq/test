@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import ForgotPasswordModal from '../components/ForgotPasswordModal';
+import ResetPasswordModal from '../components/ResetPasswordModal';
+import VerifyEmailModal from '../components/VerifyEmailModal';
+
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showForgot, setShowForgot] = useState(false);
+  const [showReset, setShowReset] = useState(false);
+  const [showVerify, setShowVerify] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +39,14 @@ function Login({ onLogin }) {
         <button type="submit">Login</button>
         {error && <div style={{ color: 'red' }}>{error}</div>}
       </form>
+      <div style={{ marginTop: 10 }}>
+        <button type="button" onClick={() => setShowForgot(true)} style={{ marginRight: 8 }}>Forgot Password?</button>
+        <button type="button" onClick={() => setShowReset(true)} style={{ marginRight: 8 }}>Reset Password</button>
+        <button type="button" onClick={() => setShowVerify(true)}>Verify Email</button>
+      </div>
+      <ForgotPasswordModal open={showForgot} onClose={() => setShowForgot(false)} />
+      <ResetPasswordModal open={showReset} onClose={() => setShowReset(false)} />
+      <VerifyEmailModal open={showVerify} onClose={() => setShowVerify(false)} />
     </div>
   );
 }
